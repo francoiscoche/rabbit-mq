@@ -1,21 +1,25 @@
-version: '3'
-
+version: "3.8"
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-14}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
-    volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
-
+    php8:
+        container_name: rabbitmq-php
+        build: docker
+        ports:
+            - "8001:8000"
+        volumes:
+            - ./:/var/www
+        networks:
+          - dev
+    rabbitmq:
+        image: rabbitmq:3.7-management
+        container_name: rabbit_mq
+        ports:
+            # AMQP protocol port
+            - 5672:5672
+            # HTTP management UI
+            - 15672:15672
+        networks:
+            - dev
+networks:
+    dev:
 volumes:
-###> doctrine/doctrine-bundle ###
-  db-data:
-###< doctrine/doctrine-bundle ###
+    db-data:
