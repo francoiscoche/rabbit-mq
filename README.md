@@ -10,7 +10,7 @@ Tuto and inspiration :
 &nbsp;
 
 ## Requirements
-***
+
 
 - Docker
 - Docker-compose
@@ -18,7 +18,7 @@ Tuto and inspiration :
 &nbsp;
 
 ## Run localy the project
-***
+
 &nbsp;
 
 Clone the project
@@ -49,7 +49,7 @@ symfony serve -d
 &nbsp;
 
 ## Try the project
-***
+
 &nbsp;
 
 - Send the mail http://127.0.0.1:8001/home
